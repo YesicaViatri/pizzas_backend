@@ -3,7 +3,6 @@ include_once("config_login.php");
 
 try{
 $pdo = new PDO("mysql:host=".SERVER_NAME.";dbname=".DATABASE_NAME,USER_NAME,PASSWORD);
-<<<<<<< HEAD
 // set the PDO error mode to exception
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 echo "conexion exitosa ";
