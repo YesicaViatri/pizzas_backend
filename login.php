@@ -28,12 +28,5 @@ if ($row == 0) {
     } else {
       echo "Bienvenido";
     }
-    
-=======
-echo "conexion exitosa";
-}
-catch(PDOException $e) {
-    echo "Conexion fallida";
-}
->>>>>>> fd6b9c38c50b2b9145c81f0adacec9c023f5b7bc
+
 ?>
