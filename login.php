@@ -3,6 +3,7 @@ include_once("config_login.php");
 
 try{
 $pdo = new PDO("mysql:host=".SERVER_NAME.";dbname=".DATABASE_NAME,USER_NAME,PASSWORD);
+<<<<<<< HEAD
 // set the PDO error mode to exception
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 echo "conexion exitosa ";
@@ -28,4 +29,11 @@ if ($row == 0) {
       echo "Bienvenido";
     }
     
+=======
+echo "conexion exitosa";
+}
+catch(PDOException $e) {
+    echo "Conexion fallida";
+}
+>>>>>>> fd6b9c38c50b2b9145c81f0adacec9c023f5b7bc
 ?>
