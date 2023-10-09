@@ -98,117 +98,43 @@
     <div class="main-content">
       <h2>NUESTRAS PIZZAS</h2>
       <ul class="gallery">
-        <li>
-          <div class="box">
-            <figure>
-              <img src="img\fugazzeta_cleanup (2).jpg" alt="Pizza Fugazzeta" />
-              <figcaption>
-                <h3>Fugazzeta</h3>
-                <p>$2700</p>
-                <time>05/07/2023</time>
-                <br /><button class="button" value="1">
-                  Agregar al carrito <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </figcaption>
-            </figure>
-          </div>
-        </li>
-        <li>
-          <div class="box">
-            <figure>
-              <img src="img\pizza-4-quesos (2).jpg" alt="Pizza 4 Quesos" />
-              <figcaption>
-                <h3>4 Quesos</h3>
-                <p>$4300</p>
-                <time>05/07/2023</time>
-                <br /><button class="button" value="2">
-                  Agregar al carrito <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </figcaption>
-            </figure>
-          </div>
-        </li>
-        <li>
-          <div class="box">
-            <figure>
-              <img
-                src="img\pizza-de-albahaca (2).jpg"
-                alt="Pizza de Albahaca"
-              />
-              <figcaption>
-                <h3>Albahaca</h3>
-                <p>$3700</p>
-                <time>05/07/2023</time>
-                <br /><button class="button" value="3">
-                  Agregar al carrito <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </figcaption>
-            </figure>
-          </div>
-        </li>
-        <li>
-          <div class="box">
-            <figure>
-              <img src="img\pizza-muzzarella (2).jpg" alt="Pizza Muzzarella" />
-              <figcaption>
-                <h3>Muzzarrella</h3>
-                <p>$3700</p>
-                <time>05/07/2023</time>
-                <br /><button class="button" value="4">
-                  Agregar al carrito <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </figcaption>
-            </figure>
-          </div>
-        </li>
-        <li>
-          <div class="box">
-            <figure>
-              <img src="img\pizza-napolitana (2).jpg" alt="Pizza Napolitana" />
-              <figcaption>
-                <h3>Napolitana</h3>
-                <p>$3900</p>
-                <time>05/07/2023</time>
-                <br /><button class="button" value="5">
-                  Agregar al carrito <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </figcaption>
-            </figure>
-          </div>
-        </li>
-        <li>
-          <div class="box">
-            <figure>
-              <img
-                src="img\pizza-rucula-y-jamon-crudo (2).jpg"
-                alt="Pizza Crudo y Rucula"
-              />
-              <figcaption>
-                <h3>Crudo y Rùcula</h3>
-                <p>$4500</p>
-                <time>05/07/2023</time>
-                <br /><button class="button" value="6">
-                  Agregar al carrito <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </figcaption>
-            </figure>
-          </div>
-        </li>
-        <li>
-          <div class="box">
-            <figure>
-              <img src="img/jamon y morron (2).jpeg" alt="Jamon y Morron" />
-              <figcaption>
-                <h3>Jamon y Morron</h3>
-                <p>$4300</p>
-                <time>10/07/2023</time>
-                <br /><button class="button" value="7">
-                  Agregar al carrito <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </figcaption>
-            </figure>
-          </div>
-        </li>
+      <?php
+      include_once("config_products.php");
+
+      try{
+        $pdo = new PDO("mysql:host=".SERVER_NAME.";dbname=".DATABASE_NAME,USER_NAME,PASSWORD);
+        // set the PDO error mode to exception
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //echo "Conexion exitosa ";
+        }
+        catch(PDOException $e) {
+            echo "Conexion fallida: " . $e->getMessage();
+        }
+      $sql="select p.product_name, p.image, p.price, date_format(p.start_date,'%d/%m/%Y') as date, c.category_name from products p inner join categories c on c.id_category=p.id_category order by p.price  asc";
+      $stmt=$pdo->prepare($sql);
+      $stmt->execute();
+      $data=$stmt->fetchAll();
+      foreach($data as $row)
+      {
+      ?>
+      <li>
+        <div class="box">
+          <figure>
+            <img src="<?php echo $row['image']?>">
+            <figcaption>
+              <h3><?php echo $row['product_name']?></h3>
+              <p><?php echo $row['price']?></p>
+              <time><?php echo $row['date']?></time>
+              <br /><button class="button" value="1">
+                Agregar al carrito <i class="fa-solid fa-cart-shopping"></i>
+              </button>
+            </figcaption>
+          </figure>
+        </div>
+      </li>
+      <?php
+      }
+      ?>
       </ul>
     </div>
     <a href="login.html">Area Privada</a>
