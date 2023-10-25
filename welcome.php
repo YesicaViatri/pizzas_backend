@@ -1,3 +1,66 @@
+
+<?php
+session_start();
+if ($_SESSION['logueado'])
+{
+echo "Bienvenido/a ".$_SESSION['username'];
+echo "<br>";
+echo "hora de conexion ".$_SESSION['time'];
+echo "<br>";
+echo "<br>";
+$table = "<table class='table table_bordered table-striped'><thead class='thead-dark'><tr><th>Id</th><th>Producto</th><th>Categoria</th><th>Precio</th><th>Fecha de Alta</th></tr></thead>";
+}
+?>
+<a href="insert-products.php" class='btn btn-primary'>Ingresar Productos</a>
+<br>
+<?php
+include_once("config_products.php");
+try{
+    $pdo = new PDO("mysql:host=".SERVER_NAME.";dbname=".DATABASE_NAME,USER_NAME,PASSWORD);
+    // set the PDO error mode to exception
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //echo "Conexion exitosa ";
+    }
+    catch(PDOException $e) {
+        echo "Conexion fallida: " . $e->getMessage();
+    }
+    $sql="select p.id_product, p.product_name, p.start_date, p.price, c.category_name from products p inner join categories c on p.id_category=c.id_category";
+    $stmt=$pdo->prepare($sql);
+    $stmt->execute();
+    echo $table;
+    echo "<tbody>";
+    $data=$stmt->fetchAll();
+    foreach($data as $row)
+    {
+    echo "<tr>";
+    echo "<td>";
+    echo $row['id_product'];
+    echo "</td>";
+
+    echo "<td>";
+    echo $row['product_name'];
+    echo "</td>";
+
+    echo "<td>";
+    echo $row['category_name'];
+    echo "</td>";
+
+    echo "<td>";
+    echo $row['price'];
+    echo "</td>";
+
+  
+    echo "<td>";
+    echo $row['start_date'];
+    echo "</td>";
+
+
+    echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+?>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,15 +78,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
-<?php
-session_start();
-if ($_SESSION['logueado'])
-{
-echo "Bienvenido/a ".$_SESSION['username'];
-echo "<br>";
-echo "hora de conexion ".$_SESSION['time'];
-echo "<br>";
-echo "<br>";
-$table = "<table>"."<thead>"."<tr>"."<th>Id</th>"."<th>Producto</th>"."<th>Categoria</th>"."<th>Precio</th>"."<th>Fecha de Alta</th>"."</tr>"."</thead>";
-}
-?>
