@@ -54,6 +54,13 @@ try{
     echo $row['start_date'];
     echo "</td>";
 
+    echo "<td>";
+    echo "<a href=''>Eliminar<a/>";
+    echo "</td>";
+
+    echo "<td>";
+    echo "<a href=''>Actualizar<a/>";
+    echo "</td>";
 
     echo "</tr>";
     }
