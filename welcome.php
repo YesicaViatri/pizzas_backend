@@ -55,9 +55,17 @@ try{
     echo "</td>";
 
     echo "<td>";
+<<<<<<< HEAD
     ?>
     <a href="#" onclick="deleteProduct(<?php echo $row['id_product'] ?>)">Eliminar</a>
     <?php
+=======
+    echo "<a href=''>Eliminar<a/>";
+    echo "</td>";
+
+    echo "<td>";
+    echo "<a href=''>Actualizar<a/>";
+>>>>>>> 8e408de762ff60f45d3c47f6f1e4a5ac780caefe
     echo "</td>";
 
     echo "<td>";
