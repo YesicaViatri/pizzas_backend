@@ -42,7 +42,7 @@
                         catch(PDOException $e) {
                             echo "Conexion fallida: " . $e->getMessage();
                         }
-                        $sql:"select id_category,category_name from categories order by category_name;"
+                        $sql="select id_category,category_name from categories order by category_name";
                         $stmt=$pdo->prepare($sql);
                         $stmt->execute();
                     ?>
