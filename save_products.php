@@ -9,5 +9,9 @@ try{
     catch(PDOException $e) {
         echo "Conexion fallida: " . $e->getMessage();
     }
-    $sql="iNSERT INTO products (product_name,price,id_category,image) values ('sevenUp 2,25',900,4,"img/SevenUp2,25.jpg")";
+    $sql="iNSERT INTO products (product_name,price,id_category,image) values ('sevenUp',900,4,'lala')";
+    $stmt=$pdo->prepare($sql);
+    $stmt->execute();
+    header('location:welcome.php');
+
 ?>
