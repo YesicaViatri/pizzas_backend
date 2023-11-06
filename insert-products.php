@@ -32,7 +32,7 @@
                     <select id="categoria" name="categoria" class="form-control">
                     <!-- Las categorias seran cargadas de la db -->
                     <?php
-                    include_once ("config_products");
+                    include_once ('config_products.php');
                     try{
                         $pdo = new PDO("mysql:host=".SERVER_NAME.";dbname=".DATABASE_NAME,USER_NAME,PASSWORD);
                         // set the PDO error mode to exception
@@ -45,6 +45,13 @@
                         $sql="select id_category,category_name from categories order by category_name";
                         $stmt=$pdo->prepare($sql);
                         $stmt->execute();
+                        $data=$stmt->fetchAll();
+                        foreach($data as $row)
+                        {
+                        ?>
+                            <option values="<?php echo $row['id_category']?>"><?php echo $row['category_name']?> 
+                            </option>
+                        <?php  }
                     ?>
                     </select>
                 </div>
