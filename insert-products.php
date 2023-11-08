@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="text-center">INGRESO DE PRODUCTOS</h3>
+            <h3 class="text-center">INGRESO DE PRODUCTOS 2</h3>
         </div>
         <div class="col-md-12">
             <form class="form-group" accept-charset="utf-8"
@@ -49,10 +49,16 @@
                         foreach($data as $row)
                         {
                         ?>
-                            <option values="<?php echo $row['id_category']?>"><?php echo $row['category_name']?> 
+                            <option value=" <?php echo $row['id_category']   ?>">
+                            <?php 
+                                 echo $row['category_name']
+                            ?>
                             </option>
-                        <?php  }
-                    ?>
+                         <?php 
+                         } 
+                        ?>
+                        
+                    
                     </select>
                 </div>
                 <div class="form-group">
