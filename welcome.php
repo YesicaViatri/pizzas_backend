@@ -57,6 +57,7 @@ try{
     echo "<td>";
     ?>
     <a href="#" onclick="deleteProduct(<?php echo $row['id_product'] ?>)">Eliminar</a>
+    <td> <a href="#" onclick="updateProduct(<?php echo $row['id_product'] ?>)"> Actualizar Producto</a> </td>
     <?php
     echo "</td>";
 
@@ -83,7 +84,10 @@ try{
         {
             bootbox.confirm('Desea usted eliminar el producto?' +cod, function(result){if (result){window.location="delete.php?q="+cod;}});
         }
+        function updateProduct(cod) { window.location = "edit.php?q=" + cod; 
+        }
         </script>
+
     <title>Document</title>
 </head>
 <body>
