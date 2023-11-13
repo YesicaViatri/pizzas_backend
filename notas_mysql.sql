@@ -178,5 +178,15 @@ miercoles11/10
 select p.id_product, p.product_name, p.start_date, p.price, c.category_name from products p inner join categories c on p.id_category=c.id_category;
 
 
-lunes 23/10
+lunes 30/10
+
+delete from products where id_product=12;
+
+select id_category,category_name from categories order by category_name;
+
+miercoles 1/11
+
+
+
+
 
