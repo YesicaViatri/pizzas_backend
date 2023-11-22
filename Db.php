@@ -1,7 +1,7 @@
 <?php
 class Db
 {
-private $connection;
+protected $connection;
 public function __construct()
 {
     try{
