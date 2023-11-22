@@ -1,7 +1,24 @@
 <?php
+/**
+ * trabaja con una base de datos 
+ * usando PDO
+ * 
+ * @author YESICA VIATRI yesicaviatri@outlook.com
+ * @link https://githb.com/yesicaviatri
+ * @version 0.1
+ * @copyright 2023
+ * 
+ */
 class Db
 {
-protected $connection;
+protected $connection; 
+/**
+ * realizar una conexion a una base de datos
+ * usando PDO
+ * 
+ * @return conexion
+ * 
+ */
 public function __construct()
 {
     try{
@@ -15,15 +32,28 @@ public function __construct()
         }
 return $this->connection;
 }
+/**
+ * cierra una conexion
+ * 
+ * @return void
+ */
 public function close()
 {
     $this->connection=null;
 }
+/**
+ * ejecuta una query SQL
+ * 
+ * @param string $sql
+ * @param string $args
+ * @return object 
+ * 
+ */
 public function run($sql,$args=NULL)
 {
     $stmt=$this->connection->prepare($sql);
     $stmt->execute($args);
-return $stmt;
+    return $stmt;
 }
 }
 ?>

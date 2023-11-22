@@ -100,19 +100,14 @@
       <ul class="gallery">
       <?php
       include_once("config_products.php");
+      include_once("Db.php");
 
-      try{
-        $pdo = new PDO("mysql:host=".SERVER_NAME.";dbname=".DATABASE_NAME,USER_NAME,PASSWORD);
-        // set the PDO error mode to exception
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //echo "Conexion exitosa ";
-        }
-        catch(PDOException $e) {
-            echo "Conexion fallida: " . $e->getMessage();
-        }
+      $link=new Db();
+     
       $sql="select p.product_name, p.image, p.price, date_format(p.start_date,'%d/%m/%Y') as date, c.category_name from products p inner join categories c on c.id_category=p.id_category order by p.price  asc";
-      $stmt=$pdo->prepare($sql);
-      $stmt->execute();
+    
+      $stmt=$link->run($sql,NULL);
+     
       $data=$stmt->fetchAll();
       foreach($data as $row)
       {
